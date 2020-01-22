@@ -1,0 +1,79 @@
+<div>
+<form #myForm="ngForm">
+
+<label class="userInfo">First Name</label><input type="text" pattern="[a-zA-Z|\-|']*" 
+[(ngModel)]="fname" name="first" #firstName2="ngModel" >
+<label class="userInfo">Last Name</label><input type="text" pattern="[a-zA-Z|\-|']*" 
+[(ngModel)]="lname" name="last" #lastName2="ngModel" >
+<label class="userInfo">Street Address</label><input type="text" required
+[(ngModel)]="addr" name="address" #address2="ngModel" >
+<br><br><br><br>
+<button type="submit" class="btn btn-default" (click)="onInfoSubmit()">Submit Address</button>
+
+<div id="errors">
+<span *ngIf="firstName2?.errors?.pattern || lastName2?.errors?.pattern" >
+Only hypens, apostrophes, and letters permitted in a name field.</span>
+<span *ngIf="address2?.errors?.required" ng-init="status = true">
+ Address is required.</span>
+</div>
+
+</form>
+
+<br><br><br>
+<form>
+  <div class="form-group">
+    <button type="submit" class="btn btn-default" (click)="onAdd()">Add</button>
+    <select id="fruitSelect" name="fruitSelect"
+      [(ngModel)]="selectedFruit" class="form-control">
+      <option *ngFor="let fruit of fruits">{{fruit.fruit}}</option>
+    </select>
+    <label>Qty</label>
+    <input name="selectedAmount" [(ngModel)]="selectedAmount" min="1" type="number" id="num">
+  </div>
+</form>
+<br><br><br>
+
+<b id="itemerror">A fruit and positive quantity must be selected. </b>
+<hr>
+
+<table>
+    <tr>
+      <td></td>
+      <th>Qty</th>
+      <th>Unit Price</th>
+      <th>Amount</th>
+    </tr>
+    <tr *ngFor="let fruit of fruits">
+      <ng-container *ngIf="fruit.quantity > 0">
+        <td>{{fruit.fruit}}</td>
+        <td>{{fruit.quantity}}</td>
+        <td ng-init="fruits.total = 4">{{fruit.price}}</td>
+        <td>{{fruit.price*fruit.quantity | number:'1.2-2'}}</td>
+        <td id="del" (click)="deleteFruit(fruit.fruit)">Delete</td>
+      </ng-container>
+    </tr>
+    <tr>
+      <td>Subtotal</td>
+      <td></td>
+      <td></td>
+      <td class="borderize">{{ subTotal() | number:'1.2-2'}}</td>
+    </tr>
+    <tr>
+        <td>Taxes 7%</td>
+        <td></td>
+        <td></td>
+        <td class="borderize">{{ tax | number:'1.2-2'}}</td>
+    </tr>
+    <tr>
+        <td>Total</td>
+        <td></td>
+        <td></td>
+        <td class="borderize">{{ grandTotal | number:'1.2-2'}}</td>
+    </tr>
+</table>
+
+<hr>
+
+<span id="userOutput"></span>
+
+</div>

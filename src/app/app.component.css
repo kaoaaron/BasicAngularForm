@@ -1,0 +1,37 @@
+#errors{
+    display: none;
+}
+
+#itemerror{
+    display: none;
+}
+
+.borderize {
+    border-top: 1px solid black;
+}
+
+.userInfo {
+    width:150px;
+    clear:left;
+}
+
+label, input, #fruitSelect, button {
+    float:left;
+}
+
+#fruitSelect{
+    margin-right:150px;
+}
+
+td{
+    text-align: right;
+}
+
+th{
+    text-align: right;
+    width: 200px;
+}
+
+#del{
+    text-decoration: underline;
+}
